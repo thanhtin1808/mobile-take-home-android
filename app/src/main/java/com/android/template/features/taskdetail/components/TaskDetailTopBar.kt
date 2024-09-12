@@ -20,7 +20,7 @@ internal fun TaskDetailTopBar(
     onBackClick: () -> Unit = {},
 ) {
     TopAppBar(
-        title = { Text(text = stringResource(id = R.string.task_detail_title)) },
+        title = { Text(text = stringResource(id = R.string.user_details_top_bar_title)) },
         modifier = modifier,
         navigationIcon = {
             IconButton(onClick = onBackClick) {
