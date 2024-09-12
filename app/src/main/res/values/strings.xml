@@ -5,7 +5,7 @@
     <string name="error_message_no_internet_connection">No internet connection. Please check your connection and try again.</string>
     <string name="error_message_unauthorized">Unauthorized. Please login again.</string>
     <string name="ok">OK</string>
-    <string name="first_run_message">Welcome to the app!</string>
-    <string name="task_list_title">Tasks</string>
+    <string name="first_run_message">Welcome to the Mobile Take Home app!</string>
+    <string name="user_list_home_top_bar_title">Github Users</string>
     <string name="task_detail_title">Task Detail</string>
 </resources>

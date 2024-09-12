@@ -8,13 +8,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.android.template.R
 import com.android.template.compose.components.uistate.UiStateScreen
 import com.android.template.features.taskdetail.models.TaskDetailDestination
 import com.android.template.features.tasks.components.TaskList
-import com.android.template.features.tasks.components.TaskListTopBar
+import com.android.template.features.tasks.components.UserTopBar
 import com.android.template.features.tasks.models.TaskListEvent
 
 @Composable
@@ -36,7 +37,12 @@ internal fun TaskListScreen(
     ) { uiState ->
         Scaffold(
             modifier = modifier.fillMaxSize(),
-            topBar = { TaskListTopBar(onCreateTaskClick = viewModel::createTask) },
+            topBar = {
+                UserTopBar(
+                    title = stringResource(R.string.user_list_home_top_bar_title),
+                    onBackClick = { navController.navigateUp() },
+                )
+            },
         ) { innerPadding ->
             TaskList(
                 tasks = uiState.tasks,
