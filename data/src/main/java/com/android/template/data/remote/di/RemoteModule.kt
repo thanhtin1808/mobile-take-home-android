@@ -3,7 +3,7 @@ package com.android.template.data.remote.di
 import com.android.template.data.BuildConfig
 import com.android.template.data.remote.adapters.errors.ErrorHandlingCallAdapterFactory
 import com.android.template.data.remote.interceptors.HeaderInterceptor
-import com.android.template.data.remote.services.TasksService
+import com.android.template.data.remote.services.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,7 +51,7 @@ internal class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideTasksService(retrofit: Retrofit): TasksService {
-        return retrofit.create(TasksService::class.java)
+    fun provideUserService(retrofit: Retrofit): UserService {
+        return retrofit.create(UserService::class.java)
     }
 }

@@ -6,10 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.android.template.features.taskdetail.TaskDetailScreen
-import com.android.template.features.taskdetail.models.TaskDetailDestination
-import com.android.template.features.tasks.TaskListScreen
-import com.android.template.features.tasks.models.TaskListDestination
+import com.android.template.features.userdetail.TaskDetailScreen
+import com.android.template.features.userdetail.models.UserDetailDestination
+import com.android.template.features.users.UserListScreen
+import com.android.template.features.users.models.UserListDestination
 
 @Composable
 internal fun MainNavHost(
@@ -18,16 +18,16 @@ internal fun MainNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = TaskListDestination,
+        startDestination = UserListDestination,
         modifier = modifier,
     ) {
-        composable<TaskListDestination> {
-            TaskListScreen(
+        composable<UserListDestination> {
+            UserListScreen(
                 navController = navController,
             )
         }
 
-        composable<TaskDetailDestination> {
+        composable<UserDetailDestination> {
             TaskDetailScreen(
                 navController = navController,
             )
