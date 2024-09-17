@@ -23,6 +23,7 @@ internal fun UserList(
     onLoadMore: () -> Unit = {},
 ) {
     val listState = rememberLazyListState()
+    /*Number of items from the end to trigger loading more*/
     val loadMoreThreshold = 4
 
     LazyColumn(
@@ -43,6 +44,7 @@ internal fun UserList(
         }
     }
 
+    /*Detect when user scrolls near the end of the list*/
     LaunchedEffect(listState) {
         snapshotFlow {
             val layoutInfo = listState.layoutInfo
