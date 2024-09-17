@@ -1,6 +1,6 @@
 package com.android.takehome.features.users.preview
 
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserModel
 
 
 internal val previewUserList = MutableList(8) {

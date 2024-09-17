@@ -1,7 +1,9 @@
 package com.android.takehome.features.users.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,11 +38,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.android.takehome.R
 import com.android.takehome.compose.theme.TakeHomeTheme
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserDetailModel
+import com.android.takehome.domain.models.users.UserModel
+import java.util.Locale
 
 @Composable
 internal fun UserItem(
     userModel: UserModel,
+    userDetailModel: UserDetailModel = UserDetailModel(),
+    isVisibleLocation: Boolean = false,
     modifier: Modifier = Modifier,
     onUserLandingPageClick: () -> Unit = {},
     onUserClick: () -> Unit = {},
@@ -58,16 +64,14 @@ internal fun UserItem(
                 containerColor = White,
             ),
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clickable { onUserClick() }
-                    .padding(vertical = 12.dp, horizontal = 12.dp),
-                verticalAlignment = Alignment.Top
-            ) {
+            Row(modifier = Modifier
+                .fillMaxSize()
+                .clickable { onUserClick() }
+                .padding(vertical = 12.dp, horizontal = 12.dp),
+                verticalAlignment = Alignment.Top) {
                 Box(
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(110.dp)
                         .background(
                             color = colorResource(R.color.light_gray),
                             shape = RoundedCornerShape(12.dp)
@@ -95,10 +99,16 @@ internal fun UserItem(
                     contentAlignment = Alignment.TopCenter
                 ) {
                     Column(
-                        modifier = Modifier.wrapContentSize(),
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .padding(vertical = 2.dp),
                     ) {
                         Text(
-                            text = userModel.name,
+                            text = userModel.name.replaceFirstChar {
+                                if (it.isLowerCase()) it.titlecase(
+                                    Locale.getDefault()
+                                ) else it.toString()
+                            },
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 fontWeight = FontWeight.Bold,
                             ),
@@ -110,16 +120,39 @@ internal fun UserItem(
                             modifier = Modifier.padding(vertical = 10.dp)
                         )
 
-                        Text(
-                            text = userModel.landingPageUrl,
-                            style = MaterialTheme.typography.bodySmall.copy(
-                                color = colorResource(R.color.light_blue),
-                                textDecoration = TextDecoration.Underline,
-                            ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.clickable { onUserLandingPageClick() },
-                        )
+                        if (isVisibleLocation) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.wrapContentSize(),  // Fill the available space
+                                horizontalArrangement = Arrangement.Start  // Center horizontally if needed
+                            ) {
+                                Image(
+                                    contentScale = ContentScale.FillBounds,
+                                    modifier = Modifier.size(15.dp),
+                                    painter = painterResource(R.drawable.ic_location),
+                                    contentDescription = null
+                                )
+                                Text(
+                                    modifier = Modifier.padding(horizontal = 4.dp),
+                                    text = userDetailModel.location,
+                                    color = colorResource(R.color.medium_gray),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
+                            }
+                        } else {
+                            Text(
+                                text = userModel.landingPageUrl,
+                                style = MaterialTheme.typography.bodySmall.copy(
+                                    color = colorResource(R.color.light_blue),
+                                    textDecoration = TextDecoration.Underline,
+                                ),
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.clickable { onUserLandingPageClick() },
+                            )
+                        }
                     }
                 }
             }
@@ -132,7 +165,7 @@ internal fun UserItem(
 internal fun UserItemPreview() {
     TakeHomeTheme {
         UserItem(
-            modifier = Modifier.height(120.dp), userModel = UserModel(
+            modifier = Modifier.height(130.dp), userModel = UserModel(
                 id = 0, avatar = "", name = "David", landingPageUrl = "https://www.linkedin.com/"
             )
         )

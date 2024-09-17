@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.android.takehome.features.userdetail.TaskDetailScreen
+import com.android.takehome.features.userdetail.UserDetailScreen
 import com.android.takehome.features.userdetail.models.UserDetailDestination
 import com.android.takehome.features.users.UserListScreen
 import com.android.takehome.features.users.components.WebViewScreen
@@ -30,7 +30,7 @@ internal fun MainNavHost(
         }
 
         composable<UserDetailDestination> {
-            TaskDetailScreen(
+            UserDetailScreen(
                 navController = navController,
             )
         }

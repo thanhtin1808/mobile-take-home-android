@@ -6,6 +6,5 @@ import javax.inject.Inject
 class GetUserListUseCase @Inject constructor(
     private val userRepository: UserRepository,
 ) {
-
-    suspend operator fun invoke() = userRepository.getUserList()
+    suspend operator fun invoke(page: Int, pageSize: Int) = userRepository.getUserList(page, pageSize)
 }

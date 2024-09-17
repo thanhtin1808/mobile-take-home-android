@@ -1,7 +1,7 @@
 package com.android.takehome.features.users
 
 import com.android.takehome.compose.uistate.viewmodel.UiStateViewModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserModel
 import com.android.takehome.domain.usecases.preferences.IsFirstRunUseCase
 import com.android.takehome.domain.usecases.preferences.SetFirstRunUseCase
 import com.android.takehome.domain.usecases.users.GetUserListUseCase
@@ -22,6 +22,9 @@ internal class UserListViewModel @Inject constructor(
     private val setFirstRunUseCase: SetFirstRunUseCase,
 ) : UiStateViewModel<UserListUiState, UserListEvent>(UserListUiState()) {
 
+    private var currentPage = 1
+    private val pageSize = 20
+
     init {
         getUserList()
         checkFirstRun()
@@ -37,19 +40,46 @@ internal class UserListViewModel @Inject constructor(
         }
     }
 
-    private fun getUserList() {
-        launchSafe (
+    private fun getUserList(loadMore: Boolean = false) {
+        launchSafe(
             context = dispatcherProvider.io,
-            hasLoading = true,
+            hasLoading = !loadMore,
             onError = ::showError,
         ) {
-            val userList = getUserListUseCase()
-            updateUiState { copy(users = userList.toPersistentList()) }
+            if (!loadMore) {
+                currentPage = 1
+            }
+            val userList = getUserListUseCase(currentPage, pageSize)
+            updateUiState {
+                copy(
+                    users = if (loadMore) {
+                        users.addAll(userList).toPersistentList()
+                    } else {
+                        userList.toPersistentList()
+                    }
+                )
+            }
+            if (userList.size == pageSize) {
+                currentPage++
+            }
         }
+    }
+
+    fun loadMore() {
+        if (isLastPage()) return
+        getUserList(loadMore = true)
+    }
+
+    private fun isLastPage(): Boolean {
+        return uiState.value.users.size % pageSize != 0
     }
 
     fun openUserDetail(user: UserModel) {
         sendEvent(UserListEvent.OpenUserDetail(user.name))
+    }
+
+    fun onBackPress() {
+        sendEvent(UserListEvent.onBackPress)
     }
 
     fun openUserLandingPage(user: UserModel) {

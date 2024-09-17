@@ -1,7 +1,9 @@
 package com.android.takehome.features.users
 
+import android.app.Activity
 import android.content.Context
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +29,10 @@ internal fun UserListScreen(
     viewModel: UserListViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
+    BackHandler {
+        val activity = (context as? Activity)
+        activity?.finish()
+    }
     UiStateScreen(
         viewModel = viewModel,
         onEvent = { event ->
@@ -44,12 +50,13 @@ internal fun UserListScreen(
         ) {
             UserTopBar(
                 title = stringResource(R.string.user_list_home_top_bar_title),
-                onBackClick = { navController.navigateUp() },
+                onBackClick = viewModel::onBackPress,
             )
             UserList(
                 users = uiState.users,
                 onUserLandingPageClick = viewModel::openUserLandingPage,
                 onUserClick = viewModel::openUserDetail,
+                onLoadMore = { viewModel.loadMore() },
             )
         }
     }
@@ -63,6 +70,11 @@ private fun handleEvent(
     when (event) {
         is UserListEvent.FirstRun -> {
             Toast.makeText(context, R.string.first_run_message, Toast.LENGTH_SHORT).show()
+        }
+
+        is UserListEvent.onBackPress -> {
+            val activity = (context as? Activity)
+            activity?.finish()
         }
 
         is UserListEvent.OpenUserDetail -> {
