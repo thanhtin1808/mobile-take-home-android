@@ -11,3 +11,5 @@
 Gemfile.lock
 /.safedk
 *.hprof
+.gradle/buildOutputCleanup/cache.properties
+.idea/deploymentTargetSelector.xml
