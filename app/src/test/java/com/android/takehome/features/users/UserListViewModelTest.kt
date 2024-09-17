@@ -68,7 +68,7 @@ internal class UserListViewModelTest {
     @Test
     fun `getUserModelList is fail`() = runTest {
         val error = NoConnectionException()
-        coEvery { getUserListUseCase() } throws error
+        coEvery { getUserListUseCase(page = 1, pageSize = 20) } throws error
 
         // When
         userListViewModel = createUserListViewModel()
@@ -136,8 +136,8 @@ internal class UserListViewModelTest {
     }
 
     private fun giveUserModelList(): List<UserModel> {
-        val userModels = listOf(UserModel(id = 1, name = "UserModel 1"), UserModel(id = 2, name = "UserModel 2"))
-        coEvery { getUserListUseCase.invoke() } returns userModels
+        val userModels = listOf(UserModel(id = 0, name = "UserModel 0"),UserModel(id = 1, name = "UserModel 1"), UserModel(id = 2, name = "UserModel 2"))
+        coEvery { getUserListUseCase.invoke(page = 1, pageSize = 20) } returns userModels
         return userModels
     }
 
