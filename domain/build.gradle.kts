@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.android.template.domain"
+    namespace = "com.android.takehome.domain"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

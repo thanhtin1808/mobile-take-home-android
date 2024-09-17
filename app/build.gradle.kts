@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.android.template"
+    namespace = "com.android.takehome"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.android.template"
+        applicationId = "com.android.takehome"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -71,11 +71,14 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.collections.immutable)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
     implementation(libs.timber)
 
     testImplementation(libs.junit)

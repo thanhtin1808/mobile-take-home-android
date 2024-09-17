@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.android.template.data"
+    namespace = "com.android.takehome.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -27,7 +27,7 @@ android {
             buildConfigField(
                 type = "String",
                 name = "BASE_URL",
-                value = "\"https://669b63f7276e45187d355230.mockapi.io\"",
+                value = "\"https://api.github.com\"",
             )
         }
 
@@ -35,7 +35,7 @@ android {
             buildConfigField(
                 type = "String",
                 name = "BASE_URL",
-                value = "\"https://669b63f7276e45187d355230.mockapi.io\"",
+                value = "\"https://api.github.com\"",
             )
         }
     }
@@ -60,6 +60,7 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     implementation(libs.room.runtime)
+    //noinspection KaptUsageInsteadOfKsp
     kapt(libs.room.compiler)
 
     implementation(libs.retrofit)
