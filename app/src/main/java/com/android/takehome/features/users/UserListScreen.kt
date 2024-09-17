@@ -56,6 +56,7 @@ internal fun UserListScreen(
                 users = uiState.users,
                 onUserLandingPageClick = viewModel::openUserLandingPage,
                 onUserClick = viewModel::openUserDetail,
+                onLoadMore = { viewModel.loadMore() },
             )
         }
     }
