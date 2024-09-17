@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.android.template"
+    namespace = "com.android.takehome"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.android.template"
+        applicationId = "com.android.takehome"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
