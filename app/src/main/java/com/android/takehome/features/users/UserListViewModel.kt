@@ -1,7 +1,7 @@
 package com.android.takehome.features.users
 
 import com.android.takehome.compose.uistate.viewmodel.UiStateViewModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserModel
 import com.android.takehome.domain.usecases.preferences.IsFirstRunUseCase
 import com.android.takehome.domain.usecases.preferences.SetFirstRunUseCase
 import com.android.takehome.domain.usecases.users.GetUserListUseCase
@@ -50,6 +50,10 @@ internal class UserListViewModel @Inject constructor(
 
     fun openUserDetail(user: UserModel) {
         sendEvent(UserListEvent.OpenUserDetail(user.name))
+    }
+
+    fun onBackPress() {
+        sendEvent(UserListEvent.onBackPress)
     }
 
     fun openUserLandingPage(user: UserModel) {

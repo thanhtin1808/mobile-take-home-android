@@ -1,4 +1,4 @@
-package com.android.takehome.domain.models.tasks
+package com.android.takehome.domain.models.users
 
 data class UserModel(
     val id: Int = 0,

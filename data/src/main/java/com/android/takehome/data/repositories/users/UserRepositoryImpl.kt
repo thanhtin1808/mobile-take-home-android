@@ -1,10 +1,8 @@
 package com.android.takehome.data.repositories.users
 
 import com.android.takehome.data.remote.services.UserService
-import com.android.takehome.data.repositories.users.mappers.toUserDetailModel
-import com.android.takehome.data.repositories.users.mappers.toUserList
-import com.android.takehome.domain.models.tasks.UserDetailModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserDetailModel
+import com.android.takehome.domain.models.users.UserModel
 import com.android.takehome.domain.repositories.users.UserRepository
 import javax.inject.Inject
 
@@ -13,15 +11,13 @@ internal class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override suspend fun getUserList(): List<UserModel> {
-        val response = userService.getUserList()
-        val userList = response.toUserList()
-        return userList
+//        val response = userService.getUserList()
+//        val userList = response.toUserList()
+        return sampleUserList
     }
 
     override suspend fun getUserDetail(userName: String): UserDetailModel {
-        val response = userService.getUserDetail(loginUsername = userName)
-        val userDetail = response.toUserDetailModel()
-        return userDetail
+        return UserDetailModel()
     }
 }
 

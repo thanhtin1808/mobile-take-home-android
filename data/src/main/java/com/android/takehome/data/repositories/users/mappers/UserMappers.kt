@@ -2,8 +2,8 @@ package com.android.takehome.data.repositories.users.mappers
 
 import com.android.takehome.data.remote.models.responses.users.UserDetailResponse
 import com.android.takehome.data.remote.models.responses.users.UserResponse
-import com.android.takehome.domain.models.tasks.UserDetailModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserDetailModel
+import com.android.takehome.domain.models.users.UserModel
 import com.android.takehome.domain.utils.orZero
 
 internal fun UserResponse.toUserModel() = UserModel(

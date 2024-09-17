@@ -3,15 +3,12 @@ package com.android.takehome.features.userdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.toRoute
 import com.android.takehome.compose.uistate.viewmodel.UiStateViewModel
-import com.android.takehome.domain.models.tasks.UserDetailModel
-import com.android.takehome.domain.models.tasks.UserModel
 import com.android.takehome.domain.usecases.users.GetUserDetailUseCase
 import com.android.takehome.features.userdetail.models.UserDetailDestination
 import com.android.takehome.features.userdetail.models.UserDetailEvent
 import com.android.takehome.features.userdetail.models.UserDetailUiState
 import com.android.takehome.providers.dispatchers.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.toPersistentList
 import javax.inject.Inject
 
 @HiltViewModel

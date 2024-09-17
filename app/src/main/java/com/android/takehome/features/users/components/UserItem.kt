@@ -38,8 +38,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.android.takehome.R
 import com.android.takehome.compose.theme.TakeHomeTheme
-import com.android.takehome.domain.models.tasks.UserDetailModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserDetailModel
+import com.android.takehome.domain.models.users.UserModel
 import java.util.Locale
 
 @Composable

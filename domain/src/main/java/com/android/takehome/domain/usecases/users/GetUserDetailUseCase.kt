@@ -1,7 +1,6 @@
 package com.android.takehome.domain.usecases.users
 
-import com.android.takehome.domain.models.tasks.UserDetailModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserDetailModel
 import com.android.takehome.domain.repositories.users.UserRepository
 import javax.inject.Inject
 

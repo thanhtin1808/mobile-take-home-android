@@ -1,7 +1,7 @@
 package com.android.takehome.domain.repositories.users
 
-import com.android.takehome.domain.models.tasks.UserDetailModel
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.users.UserDetailModel
+import com.android.takehome.domain.models.users.UserModel
 
 interface UserRepository {
 
