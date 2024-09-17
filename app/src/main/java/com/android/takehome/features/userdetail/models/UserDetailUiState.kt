@@ -1,7 +1,7 @@
 package com.android.takehome.features.userdetail.models
 
-import com.android.takehome.domain.models.tasks.UserModel
+import com.android.takehome.domain.models.tasks.UserDetailModel
 
 internal data class UserDetailUiState(
-    val user: UserModel = UserModel(),
+    val userDetail: UserDetailModel = UserDetailModel(),
 )

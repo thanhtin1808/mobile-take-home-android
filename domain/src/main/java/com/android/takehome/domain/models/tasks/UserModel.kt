@@ -6,3 +6,12 @@ data class UserModel(
     val name: String = "",
     val landingPageUrl: String = "",
 )
+
+data class UserDetailModel(
+    val userModel: UserModel = UserModel(),
+    val isVisibleLocation: Boolean = false,
+    val location: String = "Vietnam",
+    val blogUrl: String = "https://blog.abc",
+    val followers: Int = 0,
+    val following: Int = 0,
+)
