@@ -22,8 +22,7 @@ internal fun BlogItem(
 ) {
     Column(
         modifier = modifier
-            .wrapContentHeight()
-            .padding(horizontal = 16.dp),
+            .wrapContentHeight(),
         horizontalAlignment = Alignment.Start,
     ) {
         Text(

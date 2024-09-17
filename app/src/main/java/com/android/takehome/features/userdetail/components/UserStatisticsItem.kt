@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,27 +30,30 @@ import androidx.compose.ui.unit.dp
 import com.android.takehome.R
 
 @Composable
-internal fun UserStatisticsItem(modifier: Modifier = Modifier) {
+internal fun UserStatisticsItem(
+    modifier: Modifier = Modifier,
+    followerCount: String,
+    followingCount: String,
+) {
     Row(
         modifier = modifier
             .wrapContentSize()
             .padding(
-                vertical = 16.dp,
-                horizontal = 22.dp
+                vertical = 16.dp, horizontal = 22.dp
             ),
         horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
         StatItem(
             modifier = modifier.weight(1f),
             iconRes = R.drawable.ic_user_follower,
-            countText = "100+",
-            labelText = "Follower"
+            countText = followerCount,
+            labelText = stringResource(R.string.user_details_follower_title)
         )
         StatItem(
             modifier = modifier.weight(1f),
             iconRes = R.drawable.ic_user_following,
-            countText = "10+",
-            labelText = "Following"
+            countText = followingCount,
+            labelText = stringResource(R.string.user_details_following_title)
         )
     }
 }
@@ -67,7 +71,6 @@ internal fun StatItem(
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -81,12 +84,11 @@ internal fun StatItem(
                 contentScale = ContentScale.Fit
             )
         }
-
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         Text(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            text = countText,
+            text = "$countText+",
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Bold,
             ),
@@ -107,6 +109,10 @@ internal fun StatItem(
 @Composable
 fun FollowersFollowingPreview() {
     MaterialTheme {
-        UserStatisticsItem(modifier = Modifier.fillMaxSize())
+        UserStatisticsItem(
+            modifier = Modifier.fillMaxSize(),
+            followerCount = "100",
+            followingCount = "10"
+        )
     }
 }

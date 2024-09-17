@@ -22,7 +22,11 @@ internal fun UserDetailContent(userDetail: UserDetailModel, modifier: Modifier =
             onUserLandingPageClick = { },
             onUserClick = {},
         )
-        UserStatisticsItem(modifier = modifier)
+        UserStatisticsItem(
+            modifier = modifier,
+            followerCount = userDetail.followers.toString(),
+            followingCount = userDetail.following.toString()
+        )
         BlogItem(blogUrl = userDetail.blogUrl, modifier = Modifier.fillMaxWidth())
     }
 }

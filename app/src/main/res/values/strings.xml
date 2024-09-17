@@ -8,4 +8,6 @@
     <string name="first_run_message">Welcome to the Mobile Take Home app!</string>
     <string name="user_list_home_top_bar_title">Github Users</string>
     <string name="user_details_top_bar_title">User Details</string>
+    <string name="user_details_follower_title">Follower</string>
+    <string name="user_details_following_title">Following</string>
 </resources>

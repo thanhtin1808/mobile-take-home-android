@@ -40,6 +40,7 @@ import com.android.takehome.R
 import com.android.takehome.compose.theme.TakeHomeTheme
 import com.android.takehome.domain.models.tasks.UserDetailModel
 import com.android.takehome.domain.models.tasks.UserModel
+import java.util.Locale
 
 @Composable
 internal fun UserItem(
@@ -103,7 +104,11 @@ internal fun UserItem(
                             .padding(vertical = 2.dp),
                     ) {
                         Text(
-                            text = userModel.name,
+                            text = userModel.name.replaceFirstChar {
+                                if (it.isLowerCase()) it.titlecase(
+                                    Locale.getDefault()
+                                ) else it.toString()
+                            },
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 fontWeight = FontWeight.Bold,
                             ),
